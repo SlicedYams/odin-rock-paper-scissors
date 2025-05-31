@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    <div id="score-box">
-        <p>0 - 0</p>
-    </div>
-    <div id="results">
-    </div>
-    <div id="buttons">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+    <div id="game-box">
+        <div id="score-box">
+            <p>0 - 0</p>
+        </div>
+        <div id="results">
+        </div>
+        <div id="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
     </div>
     <script>
         function getComputerChoice() {
-            //get a random choice using math.random()
+            
             let randomizer = Math.random();
-            //declare a string to hold the final random choice
+            
             let randomChoice;
 
             //a conditonal that checks the random value against three groups
@@ -33,17 +36,9 @@
             else {
                 randomChoice = "Scissors";
             }
-            //return the choice
+           
             return randomChoice;
         } 
-
-        function getHumanChoice() {
-            let humanChoice = prompt("Please choose by typing in Rock, Paper, or Scissors");
-            return humanChoice;
-        }
-
-        let humanScore = 0;
-        let computerScore = 0;
 
         function updateScoreBox() {
             let score = document.querySelector("#score-box p");
@@ -52,16 +47,14 @@
             if(humanScore + computerScore == 5) {
                 didFinish = true;
                 if(humanScore > computerScore) {
-                    score.textContent = "You won! ";
+                    score.textContent = "You won the game! ";
                 }
                 else {
-                    score.textContent = "You lost! ";
+                    score.textContent = "You lost the game! ";
                 }
             }
             if(didFinish) {
                 score.textContent += scoreAsString;
-                humanScore = 0;
-                computerScore = 0;
             }
             else {
                 score.textContent = scoreAsString;
@@ -87,7 +80,7 @@
             }
             else if((humanChoice == "paper" && computerChoice == "scissors") || (humanChoice == "scissors" && computerChoice == "paper")) {
                 if(humanChoice == "scissors") {
-                    userWon = 1;
+                    humanWon = 1;
                 }
                 else {
                     humanWon = 0;
@@ -101,29 +94,45 @@
                     humanWon = 0;
                 }
             }
+
             let result = document.createElement("p");
+            result.textContent = humanChoice.substring(0,1).toUpperCase() + humanChoice.substring(1, ) + ": ";
             if(humanWon == 1) {
                 humanScore++;
-                result.textContent = "You won, " + humanChoice + " beats " + computerChoice + "!";
+                result.textContent += "You won, " + humanChoice + " beats " + computerChoice + "!";
             }
             else if (humanWon == 0) {
                 computerScore++;
-                result.textContent = "You lost, " + computerChoice + " beats " + humanChoice + "!";
+                result.textContent += "You lost, " + computerChoice + " beats " + humanChoice + "!";
             }
             else if (humanWon == -1) {
-                result.textContent = "It was a tie!";
+                result.textContent += "It was a tie!";
             }
             const resultDiv = document.querySelector("#results");
             resultDiv.appendChild(result);
-            updateScoreBox();
+            result.scrollIntoView();
         }
+
+        function resetGame() {
+            if(humanScore + computerScore == 5) {
+                    document.querySelector("#results").innerHTML = "";
+                    humanScore = 0;
+                    computerScore = 0;
+                }
+        }
+
+        let humanScore = 0;
+        let computerScore = 0;
 
         const buttons = document.querySelectorAll("button");
         console.log(buttons);
         
         buttons.forEach((button) => {
             button.addEventListener("click", () => {
+                resetGame();
+                console.log(`Clicked: "${button.textContent}"`);
                 playRound(button.textContent, getComputerChoice());
+                updateScoreBox();
             });
         });
         

@@ -1,0 +1,101 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: yesteryear, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#game-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: rgb(226, 227, 211);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+}
+
+#score-box {
+    background-color: rgb(116, 130, 102);
+    width: 100%;
+    align-items: stretch;
+    display: flex;
+    justify-content: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-bottom-style: none;
+    border-width: 3px;
+    border-color: rgb(83, 94, 73);
+    border-width: 1px;
+}
+
+#score-box p {
+    margin: 0px;
+    color: rgb(174, 196, 152);
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+#results {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(174, 196, 152);
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: scroll;
+    margin-bottom: 20px;
+    border-style: solid;
+    border-top-style: none;
+    border-width: 1px;
+    border-color: rgb(114, 128, 102);
+}
+
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent;  
+}
+
+#results p {
+    color: rgb(116, 130, 102);
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#buttons {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+button#rock {
+    background-color: rgb(255, 86, 86);
+    border-color: rgb(196, 0, 0);
+    color: rgb(128, 0, 0);
+}
+
+button#paper {
+    background-color: rgb(96, 181, 255);
+    border-color: rgb(0, 94, 176);
+    color: rgb(0, 65, 122);
+}
+
+button#scissors {
+    background-color: rgb(243, 234, 114);
+    border-color: rgb(149, 139, 9);
+    color: rgb(107, 100, 2);
+}
