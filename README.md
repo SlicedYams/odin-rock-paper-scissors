@@ -1,4 +1,4 @@
-# odin-rock-paper-scissors
+# rock-paper-scissors
 
 Pseudo-code:
 
